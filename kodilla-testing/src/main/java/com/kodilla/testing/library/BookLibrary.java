@@ -22,6 +22,14 @@ public class BookLibrary {
     }
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
+<<<<<<< HEAD
         return libraryDatabase.listBooksInHandsOf(libraryUser);
+=======
+        List<Book> bookList = new ArrayList<>();
+        List<Book> resultList = libraryDatabase
+                .listBooksInHandsOf(libraryUser);
+        bookList = resultList;
+        return bookList;
+>>>>>>> 814b0f1cc1f6188256cbf6eb2b2c6e7a3d419e36
     }
 }
