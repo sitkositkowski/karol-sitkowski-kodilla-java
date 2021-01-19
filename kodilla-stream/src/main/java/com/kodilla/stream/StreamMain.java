@@ -1,5 +1,6 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.array.ArrayOperations;
 import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.book.Book;
 import com.kodilla.stream.book.BookDirectory;
@@ -121,7 +122,7 @@ public class StreamMain {
 
         System.out.println(theResultStringOfBooks);*/
 
-        Forum theForum = new Forum();
+        /*Forum theForum = new Forum();
 
         Map<Integer, ForumUser> theResultMapOfUsers = theForum.getList().stream()
                 .filter(forumUser -> forumUser.getSex() == 'M')
@@ -133,5 +134,10 @@ public class StreamMain {
         theResultMapOfUsers.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);
+
+         */
+
+        int[] numbers = {1,2,3,4,5,6,7,8,9};
+        System.out.println(ArrayOperations.getAverage(numbers));
     }
 }
