@@ -6,4 +6,5 @@ include 'com.kodilla-testing.user'
 include 'kodilla-testing:user'
 findProject(':kodilla-testing:user')?.name = 'user'
 include 'kodilla-stream'
+include 'kodilla-exception'
 

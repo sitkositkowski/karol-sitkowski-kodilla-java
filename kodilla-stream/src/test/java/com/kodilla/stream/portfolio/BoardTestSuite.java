@@ -162,4 +162,4 @@ class BoardTestSuite {
         //Then
         assertEquals(55.0/3, averageWorkingOnTask);                                       // [9]
     }
-}
+} 
