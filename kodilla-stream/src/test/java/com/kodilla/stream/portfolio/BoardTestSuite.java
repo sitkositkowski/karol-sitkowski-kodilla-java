@@ -134,7 +134,7 @@ class BoardTestSuite {
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();               // [1]
         inProgressTasks.add(new TaskList("In progress"));                 // [2]
-        project.getTaskLists().stream()                  // [3]
+        long longTasks = project.getTaskLists().stream()                  // [3]
                 .filter(inProgressTasks::contains)                             // [4]
                 .flatMap(tl -> tl.getTasks().stream())                         // [5]
                 .map(Task::getCreated)                                         // [6]
@@ -142,7 +142,7 @@ class BoardTestSuite {
                 .count();                                                      // [8]
 
         //Then
-        assertEquals(2, 3);                                       // [9]
+        assertEquals(2, longTasks);                                       // [9]
     }
 
     @Test
@@ -156,10 +156,10 @@ class BoardTestSuite {
         double averageWorkingOnTask = project.getTaskLists().stream()                  // [3]
                 .filter(inProgressTasks::contains)                             // [4]
                 .flatMap(tl -> tl.getTasks().stream())                         // [5]
-                .map(d-> DAYS.between(d.getCreated(),d.getDeadline()))
+                .map(d-> DAYS.between(d.getCreated(),LocalDate.now()))
                 .collect(Collectors.averagingLong(Long::longValue));
 
         //Then
-        assertEquals(55.0/3, averageWorkingOnTask);                                       // [9]
+        assertEquals(10, averageWorkingOnTask);                                       // [9]
     }
 } 
