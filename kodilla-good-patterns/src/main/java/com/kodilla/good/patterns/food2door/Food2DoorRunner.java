@@ -12,6 +12,7 @@ public class Food2DoorRunner {
 
         Shop shop1 = new ShopType1("ExtraFoodShop", informationService, orderRepository);
         Shop shop2 = new ShopType2("HealthyShop", informationService, orderRepository);
+        Shop shop3 = new ShopType3("GlutenFreeShop", informationService, orderRepository);
 
         Product product1 = new Product("oil");
         Product product2 = new Product("bread");
@@ -26,30 +27,28 @@ public class Food2DoorRunner {
         productOffer1.put(product4,10);
         productOffer1.put(product5,10);
 
-        Map<Product,Integer> productOffer2 = new HashMap<>();
-        productOffer2.put(product1,10);
-        productOffer2.put(product2,10);
-        productOffer2.put(product3,10);
-        productOffer2.put(product4,10);
-        productOffer2.put(product5,10);
-
         shop1.setProductOffer(productOffer1);
-        shop2.setProductOffer(productOffer2);
+        shop2.setProductOffer(productOffer1);
+        shop3.setProductOffer(productOffer1);
 
         Buyer buyer1 = new Buyer("John");
         Order order1a = new Order(1, buyer1, product1, 5);
         Order order1b = new Order(2, buyer1, product2, 12);
         Order order2a = new Order(3, buyer1, product3, 10);
         Order order2b = new Order(4, buyer1, product4, 100);
+        Order order3a = new Order(5, buyer1, product5, 10);
 
         for (Order order : Arrays.asList(order1a, order1b)) shop1.addOrder(order);
         for (Order order : Arrays.asList(order2a, order2b)) shop2.addOrder(order);
+        shop3.addOrder(order3a);
 
         shop1.process();
         shop2.process();
+        shop3.process();
 
         System.out.println(shop1.getProductOffer());
         System.out.println(shop2.getProductOffer());
+        System.out.println(shop3.getProductOffer());
 
         shop2.addProduct(product4, 100);
 

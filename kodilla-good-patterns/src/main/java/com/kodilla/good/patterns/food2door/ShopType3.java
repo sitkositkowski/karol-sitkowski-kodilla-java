@@ -1,23 +1,20 @@
 package com.kodilla.good.patterns.food2door;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class ShopType1 implements Shop {
+public class ShopType3 implements Shop {
 
     private final String name;
     private Map<Product,Integer> productOffer;
-    private Deque<Order> orders;
-    private final InformationService informationService;
-    private final OrderRepository orderRepository;
+    private List<Order> orders;
+    private InformationService informationService;
+    private OrderRepository orderRepository;
 
-    public ShopType1(String name, InformationService informationService, OrderRepository orderRepository) {
+    public ShopType3(String name, InformationService informationService, OrderRepository orderRepository) {
         this.name = name;
-        this.informationService = informationService;
         this.orderRepository = orderRepository;
-        this.orders = new ArrayDeque<>();
+        this.informationService = informationService;
+        this.orders = new LinkedList<>();
         this.productOffer = new HashMap<>();
     }
 
@@ -43,30 +40,31 @@ public class ShopType1 implements Shop {
 
     @Override
     public void addOrder(Order order) {
-        this.orders.offer(order);
+        this.orders.add(order);
     }
 
     @Override
     public void process() {
-        Deque<Order> temporaryOrders = new ArrayDeque<>();
-        Order temporaryOrder;
+        final List<Order> temporaryOrders = new LinkedList<>();
         String isRealised;
-        while (orders.size() != 0) {
-            temporaryOrder = this.orders.poll();
+        for (Order temporaryOrder: this.orders){
+            System.out.println(temporaryOrder);
             if (getProductOffer().containsKey(temporaryOrder.getProduct())){
                 if (getProductOffer().get(temporaryOrder.getProduct()) >= temporaryOrder.getAmount()){
-                    addProduct(temporaryOrder.getProduct(), -temporaryOrder.getAmount());
                     isRealised = "isRealised";
+                    addProduct(temporaryOrder.getProduct(), -temporaryOrder.getAmount());
                 } else {
                     isRealised = "notEnoughProducts";
-                    temporaryOrders.offer(temporaryOrder);
+                    temporaryOrders.add(temporaryOrder);
                 }
             } else {
                 isRealised = "noSuchProduct";
-                temporaryOrders.offer(temporaryOrder);
+                temporaryOrders.add(temporaryOrder);
             }
+
             informationService.inform(temporaryOrder, isRealised);
             orderRepository.createOrder(temporaryOrder, isRealised);
+
         }
         this.orders = temporaryOrders;
     }
