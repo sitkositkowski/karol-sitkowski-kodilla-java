@@ -56,17 +56,4 @@ public class Product {
         this.items = items;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "JOIN_INVOICE_PRODUCT",
-            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")},
-                    inverseJoinColumns = {@JoinColumn(name = "INVOICE_ID", referencedColumnName = "ID")}
-            )
-    public List<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
-    }
 }
