@@ -1,0 +1,31 @@
+{
+  "brand": "Fiat",
+  "model": 500,
+  "engine": 1.2,
+  "chairs" : [
+    {"name": "chair 1",
+      "type": {
+        "material": "leather",
+        "color": "black"
+      }
+    },
+    {"name": "chair 2",
+      "type": {
+        "material": "leather",
+        "color": "black"
+      }
+    },
+    {"name": "chair 3",
+      "type": {
+        "material": "leather",
+        "color": "black"
+      }
+    },
+    {"name": "chair 4",
+      "type": {
+        "material": "leather",
+        "color": "black"
+      }
+    }
+  ]
+}
