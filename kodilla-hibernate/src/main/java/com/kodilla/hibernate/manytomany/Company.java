@@ -13,6 +13,10 @@ import java.util.List;
                 " WHERE SUBSTRING(COMPANY_NAME,1,3) = :PREFIX",
         resultClass = Company.class
 )
+@NamedQuery(
+        name = "Company.selectCompaniesWithNameLike",
+        query = "From Company WHERE name LIKE CONCAT('%', :ARG , '%')"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
