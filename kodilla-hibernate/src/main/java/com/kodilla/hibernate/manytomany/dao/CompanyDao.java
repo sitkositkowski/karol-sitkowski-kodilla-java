@@ -18,4 +18,6 @@ public interface CompanyDao extends CrudRepository<Company, Integer> {
     @Query(nativeQuery = true)
     List<Company> retrieveCompaniesWithPrefix(@Param("PREFIX") String prefix);
 
+    @Query
+    List<Company> selectCompaniesWithNameLike(@Param("ARG") String arg);
 }
